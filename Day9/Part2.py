@@ -1,3 +1,7 @@
+# pokerface57 2023
+# Python 3.11.1
+# AOC Day 9 Part 2
+
 with open('input.txt', 'r') as f:
     move_H = []
     for line in f:
@@ -159,5 +163,5 @@ def track_coordinates_9():
 for i in move_H:
     move_H_and_1(i)
 
-result = [i for n, i in enumerate(tail_coordinates) if i not in tail_coordinates[:n]]   # delete duplicate coordinates
+result = [i for n, i in enumerate(tail_coordinates) if i not in tail_coordinates[:n]]  # delete duplicate coordinates
 print(f'{len(result)} positions will visit the end of the rope')

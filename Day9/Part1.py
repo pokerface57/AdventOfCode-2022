@@ -1,3 +1,7 @@
+# pokerface57 2023
+# Python 3.11.1
+# AOC Day 9 Part 1
+
 with open('input.txt', 'r') as f:
     move_H = []
     for line in f:
