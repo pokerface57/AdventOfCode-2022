@@ -51,8 +51,11 @@ for i in signal:
             row = ''
         x += int(i[1])
 
-        a = '.' * (x - 1)   # first part of output sprite
-        b = 40 - len(a)     # second part of output sprite
-        sprite = f'{a}{"###":.<{b}}'
+        if x <= 0:
+            sprite = f'{"###"[-x-2:]:.<40}'
+        else:
+            a = '.' * (x - 1)   # first part of output sprite
+            b = 40 - len(a)     # second part of output sprite
+            sprite = f'{a}{"###":.<{b}}'
 
 print(result)
