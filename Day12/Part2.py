@@ -1,6 +1,6 @@
 # pokerface57 2023
 # Python 3.11.1
-# AOC Day 12 Part 1
+# AOC Day 12 Part 2
 
 
 from string import ascii_lowercase
@@ -8,6 +8,7 @@ from string import ascii_lowercase
 all_letters = 'S' + ascii_lowercase + 'E'
 possible_step = []
 used_vertices = []
+start_points = []
 
 with open('input.txt', 'r') as f:
     labyrinth = []
@@ -16,11 +17,9 @@ with open('input.txt', 'r') as f:
 # search for a starting point
 for i in range(0, len(labyrinth)):
     for j in range(0, len(labyrinth[i])):
-        if labyrinth[i][j] == 'S':
+        if labyrinth[i][j] == 'S' or labyrinth[i][j] == 'a':
             # the first argument is the row, the second argument is the column, the third attribute is the level
-            start_point = [i, j, 0]
-            # adding to the list of checked vertices
-            possible_step.append(start_point)
+            start_points.append([i, j, 0])
 
 
 def vertex_check(i, j, level):
@@ -63,7 +62,6 @@ def vertex_check(i, j, level):
                     flag = True
             if flag == False:
                 possible_step.append([k[0], k[1], level + 1])
-    print(f'DEBUG: {current_letter, i ,j}')
     return current_letter
 
 
@@ -72,8 +70,16 @@ def main():
     while len(possible_step) != 0:
         # checking the first vertex in the list of possible moves
         if vertex_check(possible_step[0][0], possible_step[0][1], possible_step[0][2]) == 'E':
-            return f"Solution Found in {steps_count} steps"
-    return f"No Solution Found!!!"
+            possible_step.clear()
+            used_vertices.clear()
+            return steps_count
 
 
-print(main())
+result = []
+
+for i in start_points:
+    # adding to the list of checked vertices
+    possible_step.append(i)
+    result.append(main())
+
+print(f'The least number of moves from vertex "a": {min(result)}')
