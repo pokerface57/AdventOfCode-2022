@@ -2,7 +2,7 @@
 # Python 3.11.1
 # AOC Day 15 Part 1
 
-import nums_from_string
+from nums_from_string import get_nums
 
 
 def path_calculation(list):
@@ -38,7 +38,7 @@ with open('input.txt', 'r') as f:
     strings = f.read().split('\n')
     coordinates = []
     for i in strings:
-        coordinates.append(nums_from_string.get_nums(i))
+        coordinates.append(get_nums(i))
 
 for i in coordinates:
     draw_line(i, 2000000)
